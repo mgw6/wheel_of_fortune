@@ -1,3 +1,10 @@
+/* 
+MacGregor Winegard
+Start Date: 12/20/2021
+
+This is the Player object, which the game will use. 
+*/
+
 #include <iostream>
 
 using namespace std;
