@@ -1,2 +1,2 @@
-# wheel_of_fortune
+# Wheel of Fortune
 "Wheel of Fortune" TV Game
