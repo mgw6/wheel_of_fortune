@@ -16,9 +16,9 @@ string list_of_puzzles [3] [2] = {
 	This will bea list of lists of all of the categories
 	and their resulting puzzles
 	*/
-	{"The answer is test1", "test1"},
-	{"The answer is test2", "test2"},
-	{"The answer is test3", "test3"},
+	{"The answer is test one", "test one"},
+	{"The answer is test two", "test two"},
+	{"The answer is test three", "test three"},
 };
 
 
