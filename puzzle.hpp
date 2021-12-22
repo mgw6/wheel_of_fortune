@@ -33,7 +33,7 @@ class Puzzle {
 			srand(time(0)); // https://www.youtube.com/watch?v=naXUIEAIt4U
 			int rand_num = rand() % len_of_list; // generates a random number between 0 and list length
 			//cout << "Random number: " << rand_num << endl;
-			this -> category = list_of_puzzles [rand_num] [0]; // extracts catgoru
+			this -> category = list_of_puzzles [rand_num] [0]; // extracts catgory
 			this -> phrase = list_of_puzzles [rand_num] [1]; // and puzzle
 		}
 		
