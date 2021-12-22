@@ -1,7 +1,8 @@
 /*
 MacGregor Winegard
 Start date: 12/20/2021
-This is the initial file I made to test the Player object
+This is the initial file I made to test the Player object, 
+and eventually just became a scratch pad for testing stuff. 
 */
 
 #include <iostream>

@@ -1,7 +1,7 @@
 /*
 MacGregor Winegard
 Start date: 12/20/2021
-This is the game object, which will be called in the play game
+This is the game object, which will be what we build the actual game around.
 */
 
 
@@ -28,8 +28,10 @@ class Game {
 			cout << "Welcome to... WHEEL OF FORTUNE!" << endl;
 			
 			Puzzle the_puzz;
-			this -> puzzle = the_puzz;
+			this -> puzzle = the_puzz; 
 			this -> num_players = 2;
+			
+			
 			
 			// This initializes the 3 players for the game
 			for(int i = 0; i <= this -> num_players; i++)

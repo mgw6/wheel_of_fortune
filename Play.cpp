@@ -12,9 +12,9 @@ using namespace std;
 int main()
 {
 	
-	Game the_game;
+	Game the_game; // initializes game
 	
-	the_game.gameplay();
+	the_game.gameplay(); // Plays game
 	
 	
 	

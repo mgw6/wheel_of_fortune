@@ -3,6 +3,7 @@ MacGregor Winegard
 Start Date: 12/20/2021
 
 This is the Player object, which the game will use. 
+Pretty straightforward and self-explanatory. 
 */
 
 #include <iostream>
@@ -11,7 +12,7 @@ using namespace std;
 
 class Player {
 	private:
-		std::string name;
+		std::string name; 
 		int score;
 	
 	public: 
