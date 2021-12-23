@@ -8,8 +8,15 @@ This is the game object, which will be what we build the actual game around.
 #include <vector>
 #include <iostream>
 #include <iterator>
-#include <stdlib.h>
-#include <iomanip>
+//#include <stdlib.h>
+//#include <iomanip>
+#include <algorithm> 
+#include <chrono>
+#include <thread>
+
+using namespace std::this_thread;
+using namespace std::chrono;
+using namespace std;
 
 #include "Player.hpp"
 #include "Puzzle.hpp"
@@ -80,13 +87,19 @@ class Game {
 			
 			while(!game_over)
 			{
-				this -> print_scoreboard();
-				this -> print_vanna();
+				
 				game_over = this -> player_turn(current_turn);
 				
+				if(!game_over)
+				{
+					current_turn++;
+					if (current_turn > 2)
+						current_turn = 0;
+				}
 				//break;
-				
 			}
+			
+			
 		}
 		
 		// Takes the phrase for the puzzle and turns it into blanks
@@ -109,7 +122,6 @@ class Game {
 		// Prints all 3 player names and their scores
 		void print_scoreboard()
 		{
-			system("cls");
 			cout << "\n   Score Board   " << endl;
 			cout << "|***************|" << endl;	
 			
@@ -125,6 +137,10 @@ class Game {
 		// Prints the state of the board
 		void print_vanna()
 		{
+			cout << "The Category is: \n"
+				<< this ->puzzle.get_category()
+				<< "\n" << endl;
+			
 			cout << "The board:" << endl;
 			cout << this -> current_board << "\n\n"<< endl;
 		}
@@ -157,32 +173,49 @@ class Game {
 		*/
 		bool player_turn(int turn_index)
 		{
+			system("cls");
 			cout << "Pat: \"" << this -> get_player(turn_index).get_name()
 				<< ", it is your turn!\"" << endl;
 				
-				int player_choice = this -> player_choice_input();
 				
-				
-				switch(player_choice)
+				bool turn_over = false;
+				while (!turn_over)
 				{
-					case 1:
-						cout << "Player chose to spin the wheel." << endl;
-						break;
+					this -> print_scoreboard();
+					this -> print_vanna();
 					
-					case 2:
-						cout << "Player chose to buy a vowel." << endl;
-						break;
-					case 3:
-						cout << "Player chose to solve the puzzle." << endl;
-						break;
-					default:
-						cout << "Not valid choice!" << endl;
-						break;
+					int player_choice = this -> player_choice_input();
+					
+					switch(player_choice)
+					{
+						case 1:
+							cout << "Player chose to spin the wheel." << endl;
+							break;
+						
+						case 2:
+							cout << "Player chose to buy a vowel." << endl;
+							turn_over = this->buy_vowel(turn_index);
+							break;
+						case 3:
+							cout << "Player chose to solve the puzzle." << endl;
+							// Will straight return whether or not they solve it correctly
+							break;
+						default:
+							cout << "Not valid choice!" << endl;
+							break;
+					}
 				}
 				
-			return true;
+			return false; // will eventually return false
 		}
 		
+		
+		/*
+			Displays the player's choices on their turn
+			
+			Returns:
+				What their choice was
+		*/
 		int player_choice_input()
 		{
 			cout << "Pat: \"Choose what to do: \" " << endl;
@@ -197,13 +230,79 @@ class Game {
 			return return_player_choice;
 		}
 		
-		void buy_vowel(int turn_index)
+		bool buy_vowel(int turn_index)
 		{
 			int vowel_cost = 250;
+			char vowel_choice;
+			
+			cout << "What vowel would you like to buy? " << endl;
+			cout << "Choice: ";
+			cin >> vowel_choice;
+			
+			vowel_choice = toupper(vowel_choice);
+			cout << vowel_choice << endl;
 			
 			
+			std::vector<char>::iterator iter = std::find(
+					this -> vowels_not_guessed.begin(), 
+					this -> vowels_not_guessed.end(), 
+					vowel_choice); // Checks if letter has been guessed yet
 			
+			if (iter != this -> vowels_not_guessed.end())
+			{ // if it has not been guessed yet
+		
+				cout << "vowel not chosen" << endl;
+				
+				this -> vowels_not_guessed.erase(
+					remove(
+						this -> vowels_not_guessed.begin(),
+						this -> vowels_not_guessed.end(),
+						vowel_choice),
+					this->vowels_not_guessed.end()
+				);
+				
+				int num_appear = this -> find_letter_in_phrase(vowel_choice);
+				
+				if (num_appear == 0)
+				{
+					cout << vowel_choice << " is not in the phrase."
+						<< endl;
+					sleep_until(system_clock::now() + seconds(3));
+					return true;
+				}
+				else
+				{
+					cout << vowel_choice << " is in the phrase "
+						<< num_appear << " times." << endl;
+					this->get_player(turn_index).decrease_score(num_appear * vowel_cost);
+					sleep_until(system_clock::now() + seconds(3));
+					return false;
+				}
+					
+			} else { // vowel cannot be guessed	
+				cout << "This input cannot be chosen." << endl;
+				return true;
+			}
+			return false;
 		}
+		
+	int find_letter_in_phrase(char letter)
+	{
+		string phrase = this->puzzle.get_phrase();
+		int count = 0;
+		
+		for (int i = 0; i < phrase.length(); i++)
+			{
+				if(phrase.at(i) == letter)
+				{
+					this-> current_board[i] = 
+						letter;
+					count++;
+				}
+			}
+			
+		return count;
+	}
 		
 };
 	
