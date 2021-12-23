@@ -11,11 +11,12 @@ This is a puzzle object that contains a category and the phrase that is the answ
 using namespace std;
 
 int len_of_list = 3; // Must match the first []
-string list_of_puzzles [3] [2] = {
-	/* 
+/* 
 	This will bea list of lists of all of the categories
 	and their resulting puzzles
-	*/
+*/
+string list_of_puzzles [3] [2] = {
+	
 	{"The answer is test one", "test one"},
 	{"The answer is test two", "test two"},
 	{"The answer is test three", "test three"},
