@@ -98,8 +98,6 @@ class Game {
 				}
 				//break;
 			}
-			
-			
 		}
 		
 		// Takes the phrase for the puzzle and turns it into blanks
@@ -267,15 +265,15 @@ class Game {
 				{
 					cout << vowel_choice << " is not in the phrase."
 						<< endl;
-					sleep_until(system_clock::now() + seconds(3));
+					sleep_until(system_clock::now() + seconds(2));
 					return true;
 				}
 				else
 				{
 					cout << vowel_choice << " is in the phrase "
 						<< num_appear << " times." << endl;
-					this->get_player(turn_index).decrease_score(num_appear * vowel_cost);
-					sleep_until(system_clock::now() + seconds(3));
+					this->player_list[turn_index].decrease_score(num_appear * vowel_cost);
+					sleep_until(system_clock::now() + seconds(2));
 					return false;
 				}
 					
@@ -283,9 +281,16 @@ class Game {
 				cout << "This input cannot be chosen." << endl;
 				return true;
 			}
+			
+			cout << "I'm pretty sure that if you're reading this then" <<
+				"there has been an issue.\n" <<
+				"Message from end of buy_vowel()" << endl;
+				
 			return false;
 		}
-		
+	
+	
+	
 	int find_letter_in_phrase(char letter)
 	{
 		string phrase = this->puzzle.get_phrase();
