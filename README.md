@@ -1,6 +1,8 @@
 # Wheel of Fortune
 
-A command line version of the "Wheel of Fortune" TV Game. 
+A command line version of the "Wheel of Fortune" TV Game.  
+
+*** Currently a work in Progress ***
 
 
 I had been thinking about how I wanted to do this for a while, and finally got around to it over Christmas break. 
