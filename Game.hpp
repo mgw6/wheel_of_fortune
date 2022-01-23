@@ -9,6 +9,11 @@ Right now we need to write the choose letter method.
 
 This will be similar to the buy vowel method.
 
+TODO:
+ 1. Build Wheel
+ 2. Write guess letter
+ 3. Build the guess phrase method
+
 */
 
 
@@ -316,6 +321,8 @@ class Game {
 		}
 		return count;
 	}
-		
+	
+	
+	
 };
 	
