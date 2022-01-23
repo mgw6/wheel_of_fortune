@@ -12,14 +12,14 @@ using namespace std;
 
 int len_of_list = 3; // Must match the first []
 /* 
-	This will bea list of lists of all of the categories
+	This will be a list of lists of all of the categories
 	and their resulting puzzles
 */
 string list_of_puzzles [3] [2] = {
 	
-	{"The answer is test one", "test one"},
-	{"The answer is test two", "test two"},
-	{"The answer is test three", "test three"},
+	{"The answer is test one", "TEST ONE"},
+	{"The answer is test two", "TEST TWO"},
+	{"The answer is test three", "TEST THREE"},
 };
 
 

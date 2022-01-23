@@ -17,6 +17,5 @@ int main()
 	the_game.gameplay(); // Plays game
 	
 	
-	
 	return 0;
 }

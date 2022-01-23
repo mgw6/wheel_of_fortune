@@ -4,6 +4,13 @@ Start date: 12/20/2021
 This is the game object, which will be what we build the actual game around.
 */
 
+/*
+Right now we need to write the choose letter method. 
+
+This will be similar to the buy vowel method.
+
+*/
+
 
 #include <vector>
 #include <iostream>
@@ -188,6 +195,7 @@ class Game {
 					{
 						case 1:
 							cout << "Player chose to spin the wheel." << endl;
+							cout << "This method has not been built yet." << endl;
 							break;
 						
 						case 2:
@@ -196,6 +204,7 @@ class Game {
 							break;
 						case 3:
 							cout << "Player chose to solve the puzzle." << endl;
+							cout << "This method has not been built yet." << endl;
 							// Will straight return whether or not they solve it correctly
 							break;
 						default:
@@ -297,15 +306,14 @@ class Game {
 		int count = 0;
 		
 		for (int i = 0; i < phrase.length(); i++)
+		{
+			if(phrase.at(i) == letter)
 			{
-				if(phrase.at(i) == letter)
-				{
-					this-> current_board[i] = 
-						letter;
-					count++;
-				}
+				this-> current_board[i] = 
+					letter;
+				count++;
 			}
-			
+		}
 		return count;
 	}
 		
